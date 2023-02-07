@@ -1,1 +1,1 @@
-[![Damian's github activity graph](https://github-readme-activity-graph.cyclic.app/graph?username=damiansire&bg_color=ffcfe9&color=9e4c98&line=9e4c98&point=403d3d&area=true&hide_border=true)](https://github.com/damiansire/github-readme-activity-graph)
+[![Damian Sire github activity graph](https://github-readme-activity-graph.cyclic.app/graph?username=damiansire&bg_color=0f2d3d&color=1cadfb&line=1cadfb&point=1cadfb&area=true&hide_border=true")](https://github.com/ashutosh00710/github-readme-activity-graph)
