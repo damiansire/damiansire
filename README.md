@@ -1,16 +1,5 @@
-# GitHub Account Cleanup Plan
+## Cleanup Status - Storage Optimization
 
-This account is officially in cleanup mode as of Saturday, April 11, 2026. After several years of building public and private repositories, I am starting a deep dive to organize this collection.
+In our recent experiments, we have been analyzing the differences between database and JSON file storage, focusing specifically on field size, information volume, and the number of links contained within the data structures. 
 
-## Action Plan
-
-I am building an AI-powered repository classifier to identify what I have and how to handle it. To test my limits, I am following a specific technical workflow:
-
-* **Build an ETL:** Create a pipeline to classify every repository in this account.
-* **Evaluation:** Determine which projects stay active.
-* **Restructure:** Group, archive, or reorganize the codebase based on those results.
-
-
-Status April 11: Database manager created
-
-https://github.com/damiansire/json-portable-db
+These experiments are aimed at optimizing storage solutions, and we reference the [json-portable-db](https://github.com/your-repo/json-portable-db) project for additional insights and methodologies employed in these trials.
