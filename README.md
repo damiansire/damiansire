@@ -15,6 +15,9 @@ I build in public: small libraries, developer tooling and web experiences.
 - **[web-worker-patterns](https://github.com/damiansire/web-worker-patterns)** ⭐ 175 · Web Worker patterns for non-blocking web apps.
 - **[angular-signals-playground](https://github.com/damiansire/angular-signals-playground)** ⭐ 94 · learn Angular Signals interactively.
 - **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ⭐ 92 · opinionated starter for Angular + multimodal AI apps.
+- **[youtube-community-parser](https://github.com/damiansire/youtube-community-parser)** ⭐ 45 · desktop app (Rust + Tauri) to analyze your YouTube comment community.
+- **[web-ar-molecule-lab](https://github.com/damiansire/web-ar-molecule-lab)** ⭐ 25 · build molecules with your hands — WebGPU + hand-tracking AR in the browser.
+- **[web-ar-hand-tracking](https://github.com/damiansire/web-ar-hand-tracking)** ⭐ 15 · hand-tracking AR with MediaPipe + Three.js, inference in a Web Worker.
 - **[google-api-wrappers](https://github.com/damiansire/google-api-wrappers)** ⭐ 11 · lightweight Node.js wrappers for Google APIs.
 - **[ts-toolkit](https://github.com/damiansire/ts-toolkit)** · **[pascal-toolchain](https://github.com/damiansire/pascal-toolchain)** · monorepos of TypeScript utilities and a Pascal compiler frontend.
 
