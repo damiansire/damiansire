@@ -12,7 +12,7 @@ I build in public: small libraries, developer tooling and web experiences.
 ### 🔧 What I'm working on
 
 **🔓 Public**
-- **[angular-web-worker-patterns](https://github.com/damiansire/angular-web-worker-patterns)** ⭐ 175 · Web Worker patterns for non-blocking web apps.
+- **[web-worker-patterns](https://github.com/damiansire/web-worker-patterns)** ⭐ 175 · Web Worker patterns for non-blocking web apps.
 - **[angular-signals-playground](https://github.com/damiansire/angular-signals-playground)** ⭐ 94 · learn Angular Signals interactively.
 - **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ⭐ 92 · opinionated starter for Angular + multimodal AI apps.
 - **[google-api-wrappers](https://github.com/damiansire/google-api-wrappers)** ⭐ 11 · lightweight Node.js wrappers for Google APIs.
