@@ -1,42 +1,35 @@
 # Hi 👋 I'm Damián
 
-**Angular GDE** (Google Developer Expert)
+**Angular GDE** (Google Developer Expert), Software Engineer and YouTube content creator (+32,000 subscribers) · 🇺🇾 Uruguay · [damiansire.com](https://damiansire.com/)
 
-I build in public: small libraries, developer tooling and web experiences.
+I build in public: small libraries, developer tooling and web experiences —
+mostly around Angular, TypeScript and Rust.
 
 ### 📊 Some stats
 - 📁 **120 repositories** · 🔓 19 public · 🔒 101 private
 - ⭐ **538 stars** across my public repos
 - 📦 **2,037 npm downloads** in the last month
 
-### 🔧 What I'm working on
+### 🔧 What I'm building (public)
 
-**🔓 Public**
-- **[web-worker-patterns](https://github.com/damiansire/web-worker-patterns)** ⭐ 175 · Web Worker patterns for non-blocking web apps.
-- **[angular-signals-playground](https://github.com/damiansire/angular-signals-playground)** ⭐ 94 · learn Angular Signals interactively.
-- **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ⭐ 92 · opinionated starter for Angular + multimodal AI apps.
-- **[youtube-community-parser](https://github.com/damiansire/youtube-community-parser)** ⭐ 45 · desktop app (Rust + Tauri) to analyze your YouTube comment community.
-- **[cognitive-substrate-os](https://github.com/damiansire/cognitive-substrate-os)** ⭐ 28 · local, filesystem-first agentic task runner in TypeScript, powered by Gemini.
-- **[web-ar-molecule-lab](https://github.com/damiansire/web-ar-molecule-lab)** ⭐ 25 · build molecules with your hands — WebGPU + hand-tracking AR in the browser.
-- **[google-api-wrappers](https://github.com/damiansire/google-api-wrappers)** ⭐ 11 · lightweight Node.js wrappers for Google APIs.
-- **[ts-toolkit](https://github.com/damiansire/ts-toolkit)** · **[pascal-toolchain](https://github.com/damiansire/pascal-toolchain)** · monorepos of TypeScript utilities and a Pascal compiler frontend.
+- **[web-worker-patterns](https://github.com/damiansire/web-worker-patterns)** ⭐ 175 · 🍴 9 · Interactive platform demonstrating advanced Web Worker patterns and architectural strategies for non-blocking web apps.
+- **[angular-signals-playground](https://github.com/damiansire/angular-signals-playground)** ⭐ 94 · Learn Angular Signals hands-on (computed, effect, linkedSignal, resource).
+- **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ⭐ 92 · Full-stack reference architecture for multimodal GenAI apps: Angular client + Node.js/Express AI Gateway, as a TypeScript monorepo.
+- **[youtube-community-parser](https://github.com/damiansire/youtube-community-parser)** ⭐ 45 · 🍴 16 · Desktop app (Rust + Tauri) to parse and understand your YouTube subscriber community.
+- **[cognitive-substrate-os](https://github.com/damiansire/cognitive-substrate-os)** ⭐ 28 · Filesystem-first agentic task runner in TypeScript, powered by Gemini — every piece of state is a plain file you can read and edit. Not a chatbot, not magic.
+- **[web-ar-molecule-lab](https://github.com/damiansire/web-ar-molecule-lab)** ⭐ 25 · Combine atoms with your voice and hand-tracking to discover real chemical compounds — runs fully in the browser (ES/EN/IT/PT). [▶ Play](https://damiansire.github.io/web-ar-molecule-lab/)
+- **[web-vaccine-tracker](https://github.com/damiansire/web-vaccine-tracker)** ⭐ 23 · 🍴 8 · Web app to follow the global evolution of vaccination.
+- **[web-ar-hand-tracking](https://github.com/damiansire/web-ar-hand-tracking)** ⭐ 15 · Web AR with MediaPipe hand-tracking (in a Web Worker) and 3D figures rendered with Three.js.
+- **[google-api-wrappers](https://github.com/damiansire/google-api-wrappers)** ⭐ 11 · Lightweight Node.js wrappers for Google APIs (YouTube Data, Sheets), npm-workspaces monorepo.
+- **[gemini-inference-framework](https://github.com/damiansire/gemini-inference-framework)** ⭐ 7 · Empirical benchmark (n=120) + mitigation suite for Gemini reasoning-token explosions: a Structured Cascade that cut latency 22.0s → 17.2s at 100% reliability.
+- **[pascal-toolchain](https://github.com/damiansire/pascal-toolchain)** ⭐ 1 · **[ts-toolkit](https://github.com/damiansire/ts-toolkit)** · A Pascal compiler frontend (tokenizer, parser, formatter) in TypeScript, and a tested suite of TypeScript utilities.
 
-**🔒 Private**
-- Building a few projects in **Rust**, **3D animation**, **video editing**, **game creation**, etc. They're not public yet, but eventually they will be.
+**🔒 Private (for now)**
+- Projects in **Rust**, **3D animation**, **video editing** and **game creation**. Not public yet — eventually they will be.
 
 ### 🎥 YouTube
-Made Spanish videos on YouTube for a year, hitting **32,000 subscribers** and accumulating over **2 million views**! 🎉 [youtube.com/damiansiredesarrollo](https://www.youtube.com/damiansiredesarrollo)
+A year of Spanish dev videos: **32,000 subscribers** and over **2 million views**. 🎉
+[youtube.com/damiansiredesarrollo](https://www.youtube.com/damiansiredesarrollo)
 
 ### 🛠️ Stack
-`Rust` · `Angular` · `TypeScript` · `Node.js` · `p5.js` · `WebGL`
-
-## 🚀 Next big project I am working on
-
-This ecosystem is built specifically for **League of Legends** and is designed to have an impact on how players improve their skills. 
-
-It is divided into three main pillars:
-*   ⚙️ **Core Engineering:** The from-scratch construction of a custom MOBA engine.
-*   🎬 **Multimedia AI:** Artificial Intelligence automating the video editing of highlight reels, as well as generating personalized video tutorials to help players identify their mistakes, leverage their strengths, and improve.
-*   📊 **Data Science:** A powerful Big Data and Machine Learning pipeline that consumes official statistics to function as an analytical coach.
-
-> **In short:** It is core engineering, multimedia AI, and data science applied to elevate gameplay in a 100% legal way (Following Riot Developer API + ToS).
+`Rust` · `Angular` · `TypeScript` · `Node.js` · `p5.js` · `WebGL` · `WebGPU`
