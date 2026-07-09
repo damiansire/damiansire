@@ -1,0 +1,37 @@
+name: Link Check
+
+# Valida que los links del README no esten rotos.
+# Se ejecuta en cada push/PR que toque el README y semanalmente (drift preventivo).
+
+on:
+  push:
+    paths:
+      - "README.md"
+      - ".github/workflows/link-check.yml"
+  pull_request:
+    paths:
+      - "README.md"
+  schedule:
+    - cron: "0 6 * * 1" # lunes 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-loopback
+            --exclude 'localhost'
+            README.md
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

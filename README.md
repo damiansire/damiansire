@@ -5,8 +5,8 @@
 I build in public: small libraries, developer tooling and web experiences.
 
 ### 📊 Some stats
-- 📁 **119 repositories** · 🔓 18 public · 🔒 101 private
-- ⭐ **536 stars** across my public repos
+- 📁 **120 repositories** · 🔓 19 public · 🔒 101 private
+- ⭐ **538 stars** across my public repos
 - 📦 **2,037 npm downloads** in the last month
 
 ### 🔧 What I'm working on
@@ -16,7 +16,7 @@ I build in public: small libraries, developer tooling and web experiences.
 - **[angular-signals-playground](https://github.com/damiansire/angular-signals-playground)** ⭐ 94 · learn Angular Signals interactively.
 - **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ⭐ 92 · opinionated starter for Angular + multimodal AI apps.
 - **[youtube-community-parser](https://github.com/damiansire/youtube-community-parser)** ⭐ 45 · desktop app (Rust + Tauri) to analyze your YouTube comment community.
-- **[cognitive-substrate-os](https://github.com/damiansire/cognitive-substrate-os)** ⭐ 26 · local, filesystem-first agentic task runner in TypeScript, powered by Gemini.
+- **[cognitive-substrate-os](https://github.com/damiansire/cognitive-substrate-os)** ⭐ 28 · local, filesystem-first agentic task runner in TypeScript, powered by Gemini.
 - **[web-ar-molecule-lab](https://github.com/damiansire/web-ar-molecule-lab)** ⭐ 25 · build molecules with your hands — WebGPU + hand-tracking AR in the browser.
 - **[google-api-wrappers](https://github.com/damiansire/google-api-wrappers)** ⭐ 11 · lightweight Node.js wrappers for Google APIs.
 - **[ts-toolkit](https://github.com/damiansire/ts-toolkit)** · **[pascal-toolchain](https://github.com/damiansire/pascal-toolchain)** · monorepos of TypeScript utilities and a Pascal compiler frontend.
