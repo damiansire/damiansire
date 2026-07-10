@@ -1,6 +1,6 @@
 # Hi 👋 I'm Damián
 
-**Angular GDE** (Google Developer Expert), Software Engineer and YouTube content creator (+32,000 subscribers) · 🇺🇾 Uruguay · [damiansire.com](https://damiansire.com/)
+**Angular GDE** (Google Developer Expert), Software Engineer and YouTube content creator (+32,000 subscribers) · [damiansire.com](https://damiansire.com/)
 
 I build in public: small libraries, developer tooling and web experiences —
 mostly around Angular, TypeScript and Rust.
