@@ -6,9 +6,10 @@ I build in public: small libraries, developer tooling and web experiences —
 mostly around Angular, TypeScript and Rust.
 
 ### 📊 Some stats
-- 📁 **120 repositories** · 🔓 19 public · 🔒 101 private
-- ⭐ **538 stars** across my public repos
-- 📦 **2,037 npm downloads** in the last month
+<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; corre semanal via GitHub Actions) -->
+- 🔓 **18 public repos** (+ private work in Rust, 3D and games, not counted here) · ⭐ **515 stars** across them
+- 📦 **2,188 npm downloads** in the last month across 15 packages
+<!-- METRICS:END -->
 
 ### 🔧 What I'm building (public)
 
