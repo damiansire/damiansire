@@ -29,7 +29,7 @@ render), not numbers typed by hand — they stay correct without me editing this
 - **[pascal-toolchain](https://github.com/damiansire/pascal-toolchain)** ![stars](https://img.shields.io/github/stars/damiansire/pascal-toolchain?style=flat&label=%E2%AD%90) · **[ts-toolkit](https://github.com/damiansire/ts-toolkit)** ![stars](https://img.shields.io/github/stars/damiansire/ts-toolkit?style=flat&label=%E2%AD%90) · A Pascal compiler frontend (tokenizer, parser, formatter) in TypeScript, and a tested suite of TypeScript utilities.
 
 npm downloads (aggregate, all packages): ![npm downloads](https://img.shields.io/npm/dm/pascal-js-compiler?style=flat&label=pascal-js-compiler)
-![npm downloads](https://img.shields.io/npm/dm/react-dinamic-tables?style=flat&label=react-dinamic-tables) — per-package badges for the rest live in each repo's own README. (Note: `react-dinamic-tables` is the currently-published npm name, typo included; pending rename to `react-dynamic-tables`.)
+![npm downloads](https://img.shields.io/npm/dm/react-dynamic-tables?style=flat&label=react-dynamic-tables) — per-package badges for the rest live in each repo's own README.
 
 **🔒 Private (for now)**
 - Projects in **Rust**, **3D animation**, **video editing** and **game creation**. Not public yet — eventually they will be.
