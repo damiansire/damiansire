@@ -5,13 +5,13 @@
 I build in public: small libraries, developer tooling and web experiences —
 mostly around Angular, TypeScript and Rust.
 
-### 📊 Some stats
+## 📊 Some stats
 <!-- METRICS:START (auto, ver scripts/update-metrics.mjs; corre semanal via GitHub Actions) -->
 - 🔓 **18 public repos** (+ private work in Rust, 3D and games, not counted here) · ⭐ **515 stars** across them
 - 📦 **2,188 npm downloads** in the last month across 15 packages
 <!-- METRICS:END -->
 
-### 🔧 What I'm building (public)
+## 🔧 What I'm building (public)
 
 Star/fork counts below are live badges (Shields.io, pulled from the GitHub API on
 render), not numbers typed by hand — they stay correct without me editing this file.
@@ -31,14 +31,17 @@ render), not numbers typed by hand — they stay correct without me editing this
 npm downloads (aggregate, all packages): ![npm downloads](https://img.shields.io/npm/dm/pascal-js-compiler?style=flat&label=pascal-js-compiler)
 ![npm downloads](https://img.shields.io/npm/dm/react-dynamic-tables?style=flat&label=react-dynamic-tables) — per-package badges for the rest live in each repo's own README.
 
-**🔒 Private (for now)**
+### 🔒 Private (for now)
+
 - Projects in **Rust**, **3D animation**, **video editing** and **game creation**. Not public yet — eventually they will be.
 
-### 🎥 YouTube
+## 🎥 YouTube
+
 A year of Spanish dev videos: **32,000 subscribers** and over **2 million views**. 🎉
 [youtube.com/damiansiredesarrollo](https://www.youtube.com/damiansiredesarrollo)
 
-### 🛠️ Stack
+## 🛠️ Stack
+
 `Rust` · `Angular` · `TypeScript` · `Node.js` · `p5.js` · `WebGL` · `WebGPU`
 
 ---
