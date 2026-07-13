@@ -7,8 +7,8 @@ mostly around Angular, TypeScript and Rust.
 
 ## 📊 Some stats
 <!-- METRICS:START (auto, ver scripts/update-metrics.mjs; corre semanal via GitHub Actions) -->
-- 🔓 **18 public repos** ⭐ **515 stars** across them
-- 📦 **2,188 npm downloads** in the last month across 15 packages
+- 🔓 **19 public repos** (+ private work in Rust, 3D and games, not counted here) · ⭐ **538 stars** across them
+- 📦 **2,354 npm downloads** in the last month across 15 packages
 <!-- METRICS:END -->
 
 ### 🔒 Private 
