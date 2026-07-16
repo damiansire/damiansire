@@ -6,12 +6,11 @@ I build in public: small libraries, developer tooling and web experiences —
 mostly around Angular, TypeScript and Rust.
 
 ## 📊 Some stats
-<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; corre semanal via GitHub Actions) -->
-- 🔓 **19 public repos** (+ private work in Rust, 3D and games, not counted here) · ⭐ **538 stars** across them
-- 📦 **2,354 npm downloads** in the last month across 15 packages
+<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; CI verifica con --check que coincida con la API de GitHub) -->
+- 🔓 **19 public repos**, ver [github.com/damiansire?tab=repositories](https://github.com/damiansire?tab=repositories) (+ private work in Rust, 3D and games, not counted here)
 <!-- METRICS:END -->
 
-### 🔒 Private 
+### 🔒 Private
 
 - Projects in **Rust**, **3D animation**, **video editing** and **game creation**.
 

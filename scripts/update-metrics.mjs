@@ -1,23 +1,14 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
+// Nota (2026-07-16): se sacaron del README las cifras agregadas de vanidad
+// (suma de stars, suma de npm downloads). Un tercero no puede verificarlas
+// con un click: hay que recalcularlas a mano. Queda solo el conteo de repos
+// publicos, verificable en un click en el tab "Repositories" del perfil, y
+// CI (link-check.yml) lo verifica en cada push/PR que toque el README con
+// --check, asi un numero manual que difiera de la API real de GitHub rompe CI.
+
 const USER = "damiansire";
-const NPM_PACKAGES = [
-  "pascal-parser",
-  "pascal-js-compiler",
-  "cognitive-substrate-os",
-  "youtube-fast-api",
-  "pascal-tokenizer",
-  "date-wizard-pro",
-  "pascal-code-formatter",
-  "react-dinamic-tables",
-  "json-scan",
-  "replace-all-custom",
-  "objects-deep-compare",
-  "counterweight-stack",
-  "json-portable-db",
-  "google-sheets-wizard",
-  "draw-axis-p5js",
-];
+const CHECK_ONLY = process.argv.includes("--check");
 
 async function fetchJson(url, headers = {}) {
   const res = await fetch(url, { headers: { "User-Agent": USER, ...headers } });
@@ -25,7 +16,7 @@ async function fetchJson(url, headers = {}) {
   return res.json();
 }
 
-async function publicRepoStats() {
+async function publicRepoCount() {
   let page = 1;
   let repos = [];
   while (true) {
@@ -37,43 +28,36 @@ async function publicRepoStats() {
     if (batch.length < 100) break;
     page++;
   }
-  const active = repos.filter((r) => !r.fork && !r.archived);
-  const stars = active.reduce((sum, r) => sum + r.stargazers_count, 0);
-  return { publicCount: active.length, stars };
+  return repos.filter((r) => !r.fork && !r.archived).length;
 }
 
-async function npmDownloads() {
-  let total = 0;
-  for (const pkg of NPM_PACKAGES) {
-    const data = await fetchJson(
-      `https://api.npmjs.org/downloads/point/last-month/${pkg}`
-    );
-    if (data && typeof data.downloads === "number") total += data.downloads;
-  }
-  return total;
-}
+const publicCount = await publicRepoCount();
 
-const [{ publicCount, stars }, downloads] = await Promise.all([
-  publicRepoStats(),
-  npmDownloads(),
-]);
-
-const block = `<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; corre semanal via GitHub Actions) -->
-- 🔓 **${publicCount} public repos** (+ private work in Rust, 3D and games, not counted here) · ⭐ **${stars.toLocaleString("en-US")} stars** across them
-- 📦 **${downloads.toLocaleString("en-US")} npm downloads** in the last month across ${NPM_PACKAGES.length} packages
+const block = `<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; CI verifica con --check que coincida con la API de GitHub) -->
+- 🔓 **${publicCount} public repos**, ver [github.com/${USER}?tab=repositories](https://github.com/${USER}?tab=repositories) (+ private work in Rust, 3D and games, not counted here)
 <!-- METRICS:END -->`;
 
 const readmePath = new URL("../README.md", import.meta.url);
 const readme = readFileSync(readmePath, "utf8");
-const updated = readme.replace(
-  /<!-- METRICS:START.*?METRICS:END -->/s,
-  block
-);
+const match = readme.match(/<!-- METRICS:START.*?METRICS:END -->/s);
 
-if (updated === readme) {
+if (!match) {
   console.error("No METRICS:START/METRICS:END markers found in README.md");
   process.exit(1);
 }
 
+if (CHECK_ONLY) {
+  if (match[0] !== block) {
+    console.error("Las metricas del README no coinciden con la API de GitHub ahora mismo.");
+    console.error("Esperado:\n" + block + "\n");
+    console.error("Encontrado:\n" + match[0] + "\n");
+    console.error("Corre `node scripts/update-metrics.mjs` (sin --check) y commiteá el resultado.");
+    process.exit(1);
+  }
+  console.log(`OK: public repos en README (${publicCount}) coincide con la API de GitHub.`);
+  process.exit(0);
+}
+
+const updated = readme.replace(/<!-- METRICS:START.*?METRICS:END -->/s, block);
 writeFileSync(readmePath, updated);
-console.log(`public repos: ${publicCount}, stars: ${stars}, npm downloads: ${downloads}`);
+console.log(`public repos: ${publicCount}`);
