@@ -33,10 +33,6 @@ async function publicRepoCount() {
 
 const publicCount = await publicRepoCount();
 
-const block = `<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; CI verifica con --check que coincida con la API de GitHub) -->
-- 🔓 **${publicCount} public repos**, ver [github.com/${USER}?tab=repositories](https://github.com/${USER}?tab=repositories) (+ private work in Rust, 3D and games, not counted here)
-<!-- METRICS:END -->`;
-
 const readmePath = new URL("../README.md", import.meta.url);
 const readme = readFileSync(readmePath, "utf8");
 const match = readme.match(/<!-- METRICS:START.*?METRICS:END -->/s);
@@ -45,6 +41,16 @@ if (!match) {
   console.error("No METRICS:START/METRICS:END markers found in README.md");
   process.exit(1);
 }
+
+// Reusa el salto de linea del propio README (LF o CRLF) para que el bloque
+// generado coincida byte a byte con el archivo, sin depender de que git
+// autocrlf este configurado igual en cada maquina.
+const NL = readme.includes("\r\n") ? "\r\n" : "\n";
+const block = [
+  "<!-- METRICS:START (auto, ver scripts/update-metrics.mjs; CI verifica con --check que coincida con la API de GitHub) -->",
+  `- 🔓 **${publicCount} public repos**, ver [github.com/${USER}?tab=repositories](https://github.com/${USER}?tab=repositories) (+ private work in Rust, 3D and games, not counted here)`,
+  "<!-- METRICS:END -->",
+].join(NL);
 
 if (CHECK_ONLY) {
   if (match[0] !== block) {
