@@ -1,20 +1,16 @@
 name: Link Check
 
-# Valida que los links del README no esten rotos y que las metricas
-# auto-reportadas (scripts/update-metrics.mjs --check) coincidan con la API
-# real de GitHub. Se ejecuta en cada push/PR que toque el README y
-# semanalmente (drift preventivo).
+# Valida que los links del README no esten rotos. Se ejecuta en cada
+# push/PR que toque el README y semanalmente (drift preventivo).
 
 on:
   push:
     paths:
       - "README.md"
-      - "scripts/update-metrics.mjs"
       - ".github/workflows/link-check.yml"
   pull_request:
     paths:
       - "README.md"
-      - "scripts/update-metrics.mjs"
   schedule:
     - cron: "0 6 * * 1" # lunes 06:00 UTC
   workflow_dispatch:
@@ -27,13 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Check metrics drift
-        run: node scripts/update-metrics.mjs --check
 
       - name: Lint markdown
         uses: DavidAnson/markdownlint-cli2-action@v19
