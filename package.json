@@ -3,7 +3,9 @@
   "private": true,
   "description": "Toolchain local del perfil de GitHub: corre los mismos gates que CI sin pushear",
   "scripts": {
-    "lint": "markdownlint-cli2 README.md CLAUDE.md"
+    "lint": "markdownlint-cli2 README.md CLAUDE.md",
+    "hygiene": "bash scripts/hygiene-check.sh",
+    "hygiene:test": "bash scripts/hygiene-check.test.sh"
   },
   "devDependencies": {
     "markdownlint-cli2": "0.23.2"

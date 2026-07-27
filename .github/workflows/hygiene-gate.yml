@@ -1,8 +1,16 @@
 name: Hygiene Gate
 
 # Gate preventivo global (roastme 2026-07-17, items 1.3d + 3.3e): falla si queda
-# trackeado un .env, o un descartable de sesion tipo claude-scratch-*/temp_*/
-# rewrite<N>.py. Higiene dependiente del gate, no del habito (Netflix/Instagram).
+# trackeado un archivo que nunca deberia publicarse (variantes de .env, claves,
+# .npmrc) o un descartable de sesion (claude-scratch-*, claude-orch-*, temp_*,
+# rewrite<N>.py). Higiene dependiente del gate, no del habito.
+#
+# La logica vive en scripts/hygiene-check.sh para que corra igual en local
+# (`pnpm hygiene`) y para que exista un self-test que la ejercite RECHAZANDO:
+# el step de abajo falla si el gate deja de gatear.
+#
+# Lo que este gate NO garantiza: mira nombres del indice actual, no contenido ni
+# historial. Un token pegado dentro de un archivo legitimo pasa.
 on:
   push:
     branches: ["**"]
@@ -18,16 +26,16 @@ concurrency:
 jobs:
   hygiene:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Sin .env / claude-scratch-* / temp_* / rewrite[0-9]*.py trackeados
+        with:
+          persist-credentials: false
+
+      - name: Self-test del gate (falla si el gate dejo de gatear)
         shell: bash
-        run: |
-          set -e
-          MATCHES=$(git ls-files | grep -E '(^|/)\.env$|(^|/)claude-scratch-[^/]*$|(^|/)temp_[^/]*$|(^|/)rewrite[0-9]+\.py$' || true)
-          if [ -n "$MATCHES" ]; then
-            echo "Archivos trackeados que no deberian estar en el repo:"
-            echo "$MATCHES"
-            exit 1
-          fi
-          echo "OK: ningun patron prohibido trackeado."
+        run: bash scripts/hygiene-check.test.sh
+
+      - name: Sin credenciales ni descartables trackeados
+        shell: bash
+        run: bash scripts/hygiene-check.sh
