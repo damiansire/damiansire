@@ -1,0 +1,3 @@
+# Normaliza los finales de linea a LF en el repo (evita ruido CRLF al editar
+# desde Windows). El working tree de cada quien queda como su plataforma pida.
+* text=auto eol=lf

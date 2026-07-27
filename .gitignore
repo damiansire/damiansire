@@ -1,0 +1,11 @@
+# Espejo local del Hygiene Gate (.github/workflows/hygiene-gate.yml): los mismos
+# patrones que el gate rechaza en CI se ignoran acá, para que el error salte al
+# hacer `git add` y no 90 segundos despues en el runner.
+.env
+.env.*
+claude-scratch-*
+temp_*
+rewrite[0-9]*.py
+
+# Toolchain local del gate de markdown
+node_modules/

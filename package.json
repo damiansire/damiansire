@@ -1,0 +1,11 @@
+{
+  "name": "damiansire",
+  "private": true,
+  "description": "Toolchain local del perfil de GitHub: corre los mismos gates que CI sin pushear",
+  "scripts": {
+    "lint": "markdownlint-cli2 README.md CLAUDE.md"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.23.2"
+  }
+}
