@@ -3,8 +3,3 @@ config:
   # repo con badges Shields.io inline; forzar 80 columnas rompe ese
   # formato sin ganar legibilidad real.
   MD013: false
-  # MD033 (no-inline-html): solo <sub> está permitido, usado a propósito
-  # para el disclaimer del footer en texto chico.
-  MD033:
-    allowed_elements:
-      - sub

@@ -1,0 +1,8 @@
+# Las actions van pinneadas a SHA (supply chain): Dependabot propone el bump
+# de esos SHAs por PR en vez de que queden congelados a mano para siempre.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

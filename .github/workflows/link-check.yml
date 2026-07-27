@@ -1,16 +1,15 @@
 name: Link Check
 
-# Valida que los links del README no esten rotos. Se ejecuta en cada
-# push/PR que toque el README y semanalmente (drift preventivo).
+# Valida el markdown (README + CLAUDE.md, mismo alcance que `pnpm lint`) y los
+# links del README. Corre en TODO push/PR: los filtros de paths dejaban fuera
+# la config del linter y al propio workflow, o sea que un cambio que rompia el
+# gate se mergeaba sin que el gate corriera. En un repo de 4 archivos el ahorro
+# de minutos no paga ese riesgo. El cron semanal cubre el drift de links
+# externos sin que haya commits.
 
 on:
   push:
-    paths:
-      - "README.md"
-      - ".github/workflows/link-check.yml"
   pull_request:
-    paths:
-      - "README.md"
   schedule:
     - cron: "0 6 * * 1" # lunes 06:00 UTC
   workflow_dispatch:
@@ -21,22 +20,33 @@ permissions:
 jobs:
   lychee:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Lint markdown
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265 # v19.1.0
         with:
-          globs: README.md
+          globs: |
+            README.md
+            CLAUDE.md
 
       - name: Check links
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
+          # Reintentos con tope y accept 429: el rojo tiene que significar
+          # "link roto", no "rate limit de YouTube a la IP del runner".
           args: >-
             --no-progress
-            --exclude-loopback
-            --exclude 'localhost'
+            --timeout 20
+            --max-retries 3
+            --retry-wait-time 10
+            --accept 200,206,429
             README.md
           fail: true
         env:
+          # Sube el rate limit de api.github.com: el README rutea a varios
+          # repos de github.com y lychee los valida via API.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
