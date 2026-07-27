@@ -157,6 +157,10 @@ El README de este repo ES el producto, así que estas cláusulas son gate, no co
 ```bash
 pnpm install       # una vez
 pnpm lint          # markdownlint-cli2 con .markdownlint-cli2.yaml, el mismo chequeo que CI
+pnpm hygiene       # gate de higiene: nombres, contenido e historial
+pnpm hygiene:test  # self-test del gate de higiene (direccion de falla)
+pnpm doc           # coherencia doc-manifest (handle, description, scripts prometidos)
+pnpm doc:test      # self-test del chequeo doc-manifest
 ```
 
 El link-check corre con `lychee` en CI. Si se quiere en local, hace falta el binario de `lychee`

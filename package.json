@@ -5,7 +5,9 @@
   "scripts": {
     "lint": "markdownlint-cli2 README.md CLAUDE.md",
     "hygiene": "bash scripts/hygiene-check.sh",
-    "hygiene:test": "bash scripts/hygiene-check.test.sh"
+    "hygiene:test": "bash scripts/hygiene-check.test.sh",
+    "doc": "bash scripts/doc-manifest-check.sh",
+    "doc:test": "bash scripts/doc-manifest-check.test.sh"
   },
   "devDependencies": {
     "markdownlint-cli2": "0.23.2"
