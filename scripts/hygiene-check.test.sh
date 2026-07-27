@@ -9,53 +9,67 @@ here=$(cd "$(dirname "$0")" && pwd)
 check="$here/hygiene-check.sh"
 failures=0
 
-expect_rejected() {
-  if printf '%s\n' "$1" | bash "$check" --stdin >/dev/null 2>&1; then
-    echo "FALLA: '$1' deberia ser rechazado y paso"
-    failures=$((failures + 1))
-  else
-    echo "ok  rechaza  $1"
-  fi
-}
+# Un lote por asercion (no una corrida por ruta): en Windows cada spawn de bash
+# cuesta segundos y el self-test es lo que se corre antes de cada commit.
+debe_rechazar='.env
+.env.local
+.env.production
+config/.env
+claude-scratch-notas.md
+notas/claude-scratch-2026/dump.txt
+claude-orch-run/driver.mjs
+temp_salida.txt
+rewrite2.py
+.npmrc
+id_rsa
+keys/id_ed25519.pub
+certs/server.pem
+service-credentials.json'
 
-expect_accepted() {
-  if printf '%s\n' "$1" | bash "$check" --stdin >/dev/null 2>&1; then
-    echo "ok  acepta   $1"
-  else
-    echo "FALLA: '$1' es legitimo y fue rechazado"
-    failures=$((failures + 1))
-  fi
-}
+debe_aceptar='README.md
+package.json
+.github/workflows/hygiene-gate.yml
+docs/environment.md
+scripts/hygiene-check.sh
+src/template_engine.ts'
 
 echo "== rutas que el gate tiene que rechazar =="
-expect_rejected ".env"
-expect_rejected ".env.local"
-expect_rejected ".env.production"
-expect_rejected "config/.env"
-expect_rejected "claude-scratch-notas.md"
-expect_rejected "notas/claude-scratch-2026/dump.txt"
-expect_rejected "claude-orch-run/driver.mjs"
-expect_rejected "temp_salida.txt"
-expect_rejected "rewrite2.py"
-expect_rejected ".npmrc"
-expect_rejected "id_rsa"
-expect_rejected "keys/id_ed25519.pub"
-expect_rejected "certs/server.pem"
-expect_rejected "service-credentials.json"
+set +e
+salida=$(printf '%s\n' "$debe_rechazar" | bash "$check" --stdin 2>&1)
+estado=$?
+set -e
+if [ "$estado" -eq 0 ]; then
+  echo "FALLA: el gate salio 0 con 14 rutas prohibidas trackeadas"
+  failures=$((failures + 1))
+fi
+while IFS= read -r ruta; do
+  if printf '%s\n' "$salida" | grep -qxF "$ruta"; then
+    echo "ok  rechaza  $ruta"
+  else
+    echo "FALLA: '$ruta' deberia ser rechazado y no aparecio en la salida"
+    failures=$((failures + 1))
+  fi
+done <<<"$debe_rechazar"
 
 echo
 echo "== rutas legitimas que el gate NO puede romper =="
-expect_accepted "README.md"
-expect_accepted "package.json"
-expect_accepted ".github/workflows/hygiene-gate.yml"
-expect_accepted "docs/environment.md"
-expect_accepted "scripts/hygiene-check.sh"
-expect_accepted "src/template_engine.ts"
+set +e
+printf '%s\n' "$debe_aceptar" | bash "$check" --stdin >/dev/null 2>&1
+estado=$?
+set -e
+if [ "$estado" -eq 0 ]; then
+  printf 'ok  acepta   %s\n' $debe_aceptar
+else
+  echo "FALLA: el gate rechazo rutas legitimas (salio $estado)"
+  printf '  %s\n' $debe_aceptar
+  failures=$((failures + 1))
+fi
 
 echo
 echo "== sobre un repo git real (cubre quotePath y el falso verde) =="
 tmp=$(mktemp -d)
-trap 'rm -rf "$tmp"' EXIT
+sin_git=$(mktemp -d)
+trap 'rm -rf "$tmp" "$sin_git"' EXIT
 
 git -C "$tmp" init -q
 mkdir -p "$tmp/Ramón"
@@ -70,8 +84,6 @@ fi
 
 # Sin repo git, `git ls-files` falla: el gate tiene que morir ruidoso, no
 # imprimir OK y salir 0 (la regresion del `|| true`).
-sin_git=$(mktemp -d)
-trap 'rm -rf "$tmp" "$sin_git"' EXIT
 if (cd "$sin_git" && bash "$check" >/dev/null 2>&1); then
   echo "FALLA: el gate salio 0 con git roto (exito falso)"
   failures=$((failures + 1))
