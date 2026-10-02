@@ -3,7 +3,7 @@
 
 # CLAUDE.md
 
-Instrucciones de este repo. Complementan el `CLAUDE.md` global del autor: si algo choca,
+Instrucciones de este repo. Complementan las convenciones personales del autor: si algo choca,
 manda este archivo para este repo.
 
 **Qué es este repo:** el README de perfil de GitHub de `damiansire` (la landing pública) más
@@ -13,21 +13,21 @@ workflows que lo mantienen honesto.
 ## Estándar nivel mundial
 
 La barra se hornea build-time, no se audita al final: lo que se escriba acá nace contra estas
-reglas. Fuente única de verdad: el corpus de referencias del autor (`$TOOLS/refs/`). Cada regla
-cita la nota de la que sale. Nada de reglas inventadas fuera del corpus.
+reglas. Cada regla dice de dónde sale: de la documentación de un proyecto open source de
+referencia (con su enlace) o de un criterio propio del autor. Nada de reglas inventadas sin fuente.
 
-**Alcance del corpus para este repo (honesto):** el mapeo de stacks no detecta ningún stack
-conocido acá (no hay Angular, React, Rust, TypeScript ni Node de aplicación). Lo que aplica es la
-barra **transversal** `architecture` del manifest: `architecture/fellow-standard.md` y las notas
-`architecture/from-consensus-*`. No existe todavía una nota `from-*` de stack para "Markdown +
-GitHub Actions", así que la sección de reglas enforzables deriva de la barra transversal aplicada
-a este stack, y está marcada como tal. Si el corpus incorpora ese stack, esa sección se reemplaza
-por la nota real.
+**Alcance de la barra para este repo (honesto):** acá no hay stack de aplicación (no hay Angular,
+React, Rust, TypeScript ni Node de aplicación). Lo que aplica es la barra **transversal** de
+arquitectura: el piso de Craft (a-j), la legibilidad en frío (k-m) y el techo de Craft, más abajo.
+No hay todavía una guía de referencia propia para "Markdown + GitHub Actions", así que la sección
+de reglas enforzables deriva de la barra transversal aplicada a este stack, y está marcada como
+tal. Si aparece una guía de ese stack, esa sección se reemplaza por ella.
 
 ### Piso de Craft (a-j)
 
 Determinista: cada ítem se marca `ok` / `violated` con `file:line`.
-Fuente: `architecture/fellow-standard.md`.
+Fuente: criterio propio del autor, la regla de la intención clara (el código se explica solo, sin
+preguntar ni ejecutarlo). Los proyectos que llevan estos ítems al extremo se citan más abajo.
 
 - **a. El nombre revela la intención de dominio, no el mecanismo.** Acá: el nombre de un job,
   step o workflow dice qué garantiza, no cómo lo implementa. Un gate llamado `Hygiene Gate`
@@ -56,8 +56,12 @@ Fuente: `architecture/fellow-standard.md`.
 
 ### Legibilidad en frío (k-m)
 
-Fuente: `architecture/fellow-standard.md` (cluster k-m), evidencia en
-`architecture/from-consensus-2026-07-09.md`.
+Fuente: criterio propio del autor, con evidencia en la documentación pública de proyectos de
+referencia: [SQLite, Distinctive Features](https://sqlite.org/different.html) (el alcance se
+declara por negación), [ripgrep](https://github.com/BurntSushi/ripgrep) y la
+[nota de su autor sobre el diseño y los benchmarks](https://burntsushi.net/ripgrep/) (pruebas
+reproducibles y framing honesto), y la guía de GitHub sobre
+[READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes).
 
 - **k. El README lidera con prueba visible y framing honesto.** El README es la UI de este repo.
   Statement claro de qué-es y para-quién en el primer screenful, y la prueba visible acá es
@@ -73,10 +77,12 @@ Fuente: `architecture/fellow-standard.md` (cluster k-m), evidencia en
 
 ### Techo de Craft
 
-Fuente: `architecture/fellow-standard.md` (sección "Techo de Craft"), evidencia en
-`architecture/from-consensus-craft-techo-2026-07-09.md`. Idea rectora del saqueo: los repos de
-referencia convierten la calidad en **hecho machine-enforced**, no en convención. El techo no es
-"más prolijo", es "imposible de violar sin que algo falle ruidoso".
+Fuente: criterio propio del autor, con evidencia en la documentación pública de
+[LLVM](https://llvm.org/docs/CodingStandards.html),
+[Kubernetes](https://github.com/kubernetes/kubernetes/blob/master/staging/publishing/import-restrictions.yaml)
+y [SQLite](https://sqlite.org/testing.html). Idea rectora de esa lectura: los repos de referencia
+convierten la calidad en **hecho machine-enforced**, no en convención. El techo no es "más
+prolijo", es "imposible de violar sin que algo falle ruidoso".
 
 Traducido a este repo:
 
@@ -98,39 +104,41 @@ Traducido a este repo:
 
 ### Reglas enforzables del stack (Markdown + GitHub Actions)
 
-Derivadas de la barra transversal aplicada a este stack, no de una nota `from-*` propia (ver
-"Alcance del corpus" arriba). Cada una es chequeable.
+Derivadas de la barra transversal aplicada a este stack, no de una guía propia del stack (ver
+"Alcance de la barra" arriba). Cada una es chequeable.
 
 1. **Un gate que no gatea no es un gate, es un comentario.** Nada de `|| true` neutralizando el
    `set -e` de un chequeo que se vende como bloqueante, ni de pasos que reportan OK cuando el
    comando de abajo falló. `set -euo pipefail`, y separar "el comando falló" de "no hubo matches".
-   (fuente: `architecture/from-consensus-eval-infra-2026-07-17.md`, divergencia D3 soft vs hard
-   gate: "un eval que se vende como gate de calidad y corre soft-por-default (`|| true`) NO es un
-   gate, es un comentario").
+   (fuente: [promptfoo-action](https://github.com/promptfoo/promptfoo-action) distingue el modo
+   suave, que solo postea un comentario en el PR y no falla el check, del modo duro con umbral
+   que sale con error. Lo que se vende como gate de calidad tiene que ser el segundo).
 2. **El gate se ejercita en su dirección de falla.** Todo chequeo nuevo viene con un caso fixture
-   que DEBE hacerlo salir 1. (fuente: `architecture/fellow-standard.md`, techo de los ítems f-g:
-   SQLite VFS de crash y journal-test, se ejercita, no se asume).
+   que DEBE hacerlo salir 1. (fuente: la
+   [estrategia de testing de SQLite](https://sqlite.org/testing.html): un VFS de crash que simula
+   escrituras incompletas y un VFS de journal-test. El recovery se ejercita, no se asume).
 3. **Default-deny en permisos.** `permissions:` explícito y mínimo en cada workflow; los
    allowlists de herramientas enumeran comandos concretos, nunca comodines que cubran verbos
-   mutantes de una API. (fuente: `architecture/fellow-standard.md` ítem j +
-   `architecture/from-consensus-resiliencia-2026-07-09.md`, fail-closed confirmado 3-0 en cuatro
-   sistemas de authz independientes).
+   mutantes de una API. (fuente: ítem j del piso de Craft y el fail-closed de sistemas de authz
+   independientes: la
+   [autorización de Kubernetes](https://kubernetes.io/docs/reference/access-authn-authz/authorization/),
+   la [keyword `default` de OPA/Rego](https://www.openpolicyagent.org/docs/policy-reference/keywords/default)
+   y el [RBAC de Envoy](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/rbac/v3/rbac.proto)).
 4. **Presupuesto de tiempo y reintentos acotados en todo job.** `timeout-minutes` en cada job y
-   reintentos con tope en toda llamada de red del CI. (fuente: `architecture/fellow-standard.md`
-   ítem i + `architecture/from-consensus-resiliencia-2026-07-09.md`: cap exponencial finito,
-   jitter obligatorio, stop por presupuesto de tiempo).
+   reintentos con tope en toda llamada de red del CI. (fuente: ítem i del piso de Craft y
+   [exponential backoff and jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)
+   de AWS: cap exponencial finito, jitter obligatorio, stop por presupuesto de tiempo).
 5. **Acciones de terceros pinneadas a una referencia durable.** Un `@vN` móvil que además recibe
-   `GITHUB_TOKEN` es superficie de supply-chain sin control de versión. (fuente:
-   `architecture/from-consensus-resiliencia-2026-07-09.md`, caveat de durabilidad: "para un lint
-   durable, pinnear a un tag de release").
+   `GITHUB_TOKEN` es superficie de supply-chain sin control de versión. (criterio propio del
+   autor: los workflows de este repo pinnean cada acción a un SHA y dejan el tag en un comentario).
 6. **Todo gate declarado corre en local antes de pushear.** `pnpm install` y `pnpm lint` corren
    el mismo chequeo que CI sin esperar al runner. Un gate que solo existe en el runner convierte
    cada typo en un ciclo de 90 segundos.
 7. **Un dato, un lugar.** Ninguna cifra ni handle se escribe dos veces en el README. (fuente:
-   `architecture/fellow-standard.md` ítem d: lógica duplicada que puede divergir).
-8. **Convenciones del autor (no salen del corpus, salen del `CLAUDE.md` global):** sin raya larga
-   (em dash) en ningún texto; conventional commits en español; nada de `git push` ni releases sin
-   pedido explícito.
+   ítem d del piso de Craft: lógica duplicada que puede divergir).
+8. **Convenciones del autor (no salen de ninguna fuente externa, son preferencias propias):** sin
+   raya larga (em dash) en ningún texto; conventional commits en español; nada de `git push` ni
+   releases sin pedido explícito.
 
 ### Documentación
 
@@ -138,17 +146,19 @@ El README de este repo ES el producto, así que estas cláusulas son gate, no co
 
 - **El README nombra al proyecto igual que el manifest.** El nombre y la descripción declarados
   (`package.json`, description y topics del repo en GitHub) dicen lo mismo que el README. Hay
-  chequeo ejecutable de coherencia doc-manifest y tiene que quedar verde. (fuente:
-  `architecture/fellow-standard.md` ítem k, "nombre y descripción = el contenido real").
+  chequeo ejecutable de coherencia doc-manifest y tiene que quedar verde. (fuente: ítem k de la
+  legibilidad en frío: el nombre y la descripción dicen lo que el contenido es de verdad).
 - **No se linkea a archivos ni secciones que no existen.** Ni links rotos (lo cubre `Link Check`)
   ni referencias a contenido borrado. Vale también para los comentarios de config: si un
   comentario justifica una excepción por contenido que ya no está, se borra o se actualiza en el
-  mismo commit. (fuente: `architecture/fellow-standard.md` ítem b, el comentario explica POR QUÉ
-  y ese porqué tiene que ser cierto).
+  mismo commit. (fuente: ítem b del piso de Craft: el comentario explica POR QUÉ y ese porqué
+  tiene que ser cierto).
 - **No es un molde reciclado.** Nada de secciones de plantilla que no describan este repo, ni
-  texto genérico de perfil. Cada línea del README tiene que ser falsable. (fuente:
-  `architecture/from-consensus-2026-07-09.md`: README como entry-point con statement honesto del
-  problema, y framing honesto como generador de confianza).
+  texto genérico de perfil. Cada línea del README tiene que ser falsable. (fuente: la guía de
+  GitHub sobre [READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes),
+  el README como entry-point con un statement honesto del problema, y la
+  [nota del autor de ripgrep](https://burntsushi.net/ripgrep/), donde el framing honesto genera
+  confianza: reconoce el sesgo propio y reporta hasta el benchmark que pierde).
 - **Todo `.md` nuevo entra al glob de `pnpm lint` y al workflow.** Si un archivo no está en el
   glob, el gate no lo cubre y la regla vuelve a ser convención.
 
