@@ -14,6 +14,8 @@ Every number below is a live badge, so it is today's value and not one I typed o
   Hands-on playground for Angular Signals: `computed`, `effect`, `linkedSignal`, `resource`. TypeScript.
 - **[genai-fullstack-blueprint](https://github.com/damiansire/genai-fullstack-blueprint)** ![genai-fullstack-blueprint stars](https://img.shields.io/github/stars/damiansire/genai-fullstack-blueprint?style=flat&label=%E2%98%85&color=555)
   Reference architecture for multimodal GenAI apps: Angular client plus a Node.js/Express AI gateway, as a TypeScript monorepo.
+- **[cognitive-substrate](https://github.com/damiansire/cognitive-substrate)** ![cognitive-substrate stars](https://img.shields.io/github/stars/damiansire/cognitive-substrate?style=flat&label=%E2%98%85&color=555)
+  Filesystem-first agentic task runner powered by Gemini: splits a goal into tasks, runs each in a sandboxed agent and keeps every piece of state as a plain file you can read and edit. TypeScript.
 - **[youtube-community-parser](https://github.com/damiansire/youtube-community-parser)** ![youtube-community-parser stars](https://img.shields.io/github/stars/damiansire/youtube-community-parser?style=flat&label=%E2%98%85&color=555)
   Desktop app to parse, analyze and understand your YouTube subscriber community data. Rust.
 - **[web-ar-molecule-lab](https://github.com/damiansire/web-ar-molecule-lab)** ![web-ar-molecule-lab stars](https://img.shields.io/github/stars/damiansire/web-ar-molecule-lab?style=flat&label=%E2%98%85&color=555)
