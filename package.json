@@ -7,7 +7,9 @@
     "hygiene": "bash scripts/hygiene-check.sh",
     "hygiene:test": "bash scripts/hygiene-check.test.sh",
     "doc": "bash scripts/doc-manifest-check.sh",
-    "doc:test": "bash scripts/doc-manifest-check.test.sh"
+    "doc:test": "bash scripts/doc-manifest-check.test.sh",
+    "badges": "bash scripts/badge-check.sh",
+    "badges:test": "bash scripts/badge-check.test.sh"
   },
   "devDependencies": {
     "markdownlint-cli2": "0.23.2"

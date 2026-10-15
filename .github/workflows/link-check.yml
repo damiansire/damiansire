@@ -41,6 +41,16 @@ jobs:
         shell: bash
         run: bash scripts/doc-manifest-check.sh
 
+      # Un badge retirado responde 200 con un SVG gris: lychee lo da por bueno.
+      # Este gate lee el valor que renderiza cada badge dinamico.
+      - name: Self-test del chequeo de badges (falla si dejo de gatear)
+        shell: bash
+        run: bash scripts/badge-check.test.sh
+
+      - name: Badges con valor real
+        shell: bash
+        run: bash scripts/badge-check.sh
+
       - name: Check links
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:

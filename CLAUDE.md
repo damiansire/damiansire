@@ -171,6 +171,8 @@ pnpm hygiene       # gate de higiene: nombres, contenido e historial
 pnpm hygiene:test  # self-test del gate de higiene (direccion de falla)
 pnpm doc           # coherencia doc-manifest (handle, description, scripts prometidos)
 pnpm doc:test      # self-test del chequeo doc-manifest
+pnpm badges        # cada badge dinamico de Shields renderiza un valor real (necesita red)
+pnpm badges:test   # self-test del chequeo de badges (sin red)
 ```
 
 El link-check corre con `lychee` en CI. Si se quiere en local, hace falta el binario de `lychee`

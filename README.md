@@ -27,10 +27,7 @@ Rust, 3D animation, video editing and game creation. These are not public, so th
 
 ## 🎥 YouTube
 
-Dev videos **in Spanish** on [youtube.com/damiansiredesarrollo](https://www.youtube.com/damiansiredesarrollo):
-
-[![YouTube subscribers](https://img.shields.io/youtube/channel/subscribers/UCc0nQ-PfJBYT7KN72q30r0A?style=flat&logo=youtube&label=subscribers)](https://www.youtube.com/damiansiredesarrollo)
-[![YouTube views](https://img.shields.io/youtube/channel/views/UCc0nQ-PfJBYT7KN72q30r0A?style=flat&logo=youtube&label=views)](https://www.youtube.com/damiansiredesarrollo)
+Dev videos **in Spanish** on [youtube.com/damiansiredesarrollo](https://www.youtube.com/damiansiredesarrollo).
 
 ## 🛠️ Stack
 
